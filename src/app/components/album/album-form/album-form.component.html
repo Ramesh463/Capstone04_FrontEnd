@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group dynamicHeight>
   <mat-tab label="Album">
     <div class="container">
       <h2>{{ isEditMode ? 'Edit album' : 'New Album' }}</h2>
@@ -6,7 +6,7 @@
         <div>
           <mat-form-field class="example-full-width" color="primary" appearance="outline">
             <mat-label>Album Title</mat-label>
-            <input matInput placeholder="Ex. Pizza" id="albumName" type="text" class="form-control"
+            <input matInput placeholder="Ex. My Album" id="albumName" type="text" class="form-control"
               formControlName="albumName" />
             <div *ngIf="albumForm.get('albumName')?.touched && albumForm.get('albumName')?.invalid" class="text-danger">
               <small>Title is required.</small>
@@ -16,8 +16,7 @@
         <div>
           <mat-form-field class="example-full-width" color="primary" appearance="outline">
             <mat-label>Format</mat-label>
-            <input matInput placeholder="Ex. Pizza" id="format" type="text" class="form-control"
-              formControlName="format" />
+            <input matInput id="format" type="text" class="form-control" formControlName="format" />
             <div *ngIf="albumForm.get('format')?.touched && albumForm.get('format')?.invalid" class="text-danger">
               <small>Format is required.</small>
             </div>
@@ -27,8 +26,7 @@
         <div>
           <mat-form-field class="example-full-width" color="primary" appearance="outline">
             <mat-label>Description</mat-label>
-            <input matInput placeholder="Ex. Pizza" id="description" type="text" class="form-control"
-              formControlName="description" />
+            <input matInput id="description" type="text" class="form-control" formControlName="description" />
             <div *ngIf="albumForm.get('description')?.touched && albumForm.get('description')?.invalid"
               class="text-danger">
               <small>Format is required.</small>
@@ -39,8 +37,7 @@
         <div>
           <mat-form-field class="example-full-width" color="primary" appearance="outline">
             <mat-label>Total Track</mat-label>
-            <input matInput placeholder="Ex. Pizza" id="totalTracks" type="number" class="form-control"
-              formControlName="totalTracks" />
+            <input matInput id="totalTracks" type="number" class="form-control" formControlName="totalTracks" />
             <div *ngIf="albumForm.get('totalTracks')?.touched && albumForm.get('totalTracks')?.invalid"
               class="text-danger">
               <small>Total Track is required.</small>
@@ -61,10 +58,9 @@
               <small>Genre is required.</small>
             </div>
           </mat-form-field>
-        </div>
 
-        <div class="button-container">
-          <mat-card-actions>
+          <div class="button-container">
+           <mat-card-actions >
             <div><button class="my-custom-button" mat-fab extended color="primary" type="submit"
                 [disabled]="albumForm.invalid">
                 Submit
@@ -72,7 +68,10 @@
             <div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()">
                 <mat-icon>arrow_back</mat-icon> Back</a></div>
           </mat-card-actions>
+          </div>
         </div>
+
+
       </form>
       <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
     </div>
@@ -188,14 +187,20 @@
 
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef> Status</th>
-            <td mat-cell *matCellDef="let s"> <button mat-flat-button (click)="addTrackToAlbum(s.id!)"
-                class="btn btn-sm btn-success" [disabled]="isRegistered(s)">
-                {{ isRegistered(s) ? 'Registered' : 'Register' }}
+            <td mat-cell *matCellDef="let tracks"> <button mat-flat-button (click)="addTrackToAlbum(tracks.id!)"
+                class="btn btn-sm btn-success" [disabled]="isRegisteredTrack(tracks)">
+                {{ isRegistered(tracks) ? 'Registered' : 'Register' }}
               </button> </td>
           </ng-container>
 
-
-
+          <ng-container matColumnDef="drop">
+            <th mat-header-cell *matHeaderCellDef> Drop </th>
+            <td mat-cell *matCellDef="let tracks">
+              <button mat-flat-button color="warn" (click)="dropTrack(tracks.id!)" [disabled]="!isRegisteredTrack(tracks)">
+                Drop
+              </button>
+            </td>
+          </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedTrackColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedTrackColumns;"></tr>

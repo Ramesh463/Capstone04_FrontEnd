@@ -33,3 +33,24 @@
   background: #1e1f1f;
 }
 
+
+
+.button-container {
+  display: flex;
+  justify-content:center;
+  margin-top: 10px;
+
+}
+
+/* mat-card-actions {
+  display: flex;
+  gap: 300px;
+} */
+
+.my-custom-button {
+      width: 250px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+

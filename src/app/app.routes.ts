@@ -6,21 +6,28 @@ import { TrackListComponent } from './components/track/track-list/track-list.com
 import { AlbumListComponent } from './components/album/album-list/album-list.component';
 import { AlbumFormComponent } from './components/album/album-form/album-form.component';
 import { AlbumDetailsComponent } from './components/album/album-details/album-details.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
  { path: '', redirectTo: '/artists', pathMatch: 'full' },
- { path: 'artists', component: ArtistListComponent },
- { path: 'artists/new', component: ArtistFormComponent},
- { path: 'artists/:id/edit', component: ArtistFormComponent},
 
- {path: 'tracks', component: TrackListComponent},
- {path: 'tracks/new', component: TrackFormComponent},
- {path: 'tracks/:id/edit', component: TrackFormComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
- {path: 'albums', component: AlbumListComponent},
- {path: 'albums/new', component: AlbumFormComponent},
- {path: 'albums/:id/edit',component: AlbumFormComponent},
- {path: 'albums/:id/view', component:AlbumDetailsComponent},
+ { path: 'artists', component: ArtistListComponent, canActivate: [AuthGuard] },
+ { path: 'artists/new', component: ArtistFormComponent, canActivate: [AuthGuard]},
+ { path: 'artists/:id/edit', component: ArtistFormComponent, canActivate: [AuthGuard]},
+
+ {path: 'tracks', component: TrackListComponent, canActivate: [AuthGuard]},
+ {path: 'tracks/new', component: TrackFormComponent, canActivate: [AuthGuard]},
+ {path: 'tracks/:id/edit', component: TrackFormComponent, canActivate: [AuthGuard]},
+
+ {path: 'albums', component: AlbumListComponent, canActivate: [AuthGuard]},
+ {path: 'albums/new', component: AlbumFormComponent, canActivate: [AuthGuard]},
+ {path: 'albums/:id/edit',component: AlbumFormComponent, canActivate: [AuthGuard]},
+ {path: 'albums/:id/view', component:AlbumDetailsComponent, canActivate: [AuthGuard]},
 
  { path: '**', redirectTo: '/artists' }
 

@@ -17,6 +17,7 @@ import { MatOption, MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 
@@ -46,7 +47,7 @@ export class AlbumFormComponent implements OnInit {
   albumId?: number;
   errorMessage = '';
 displayedColumns: string[] = ['firstName', 'lastName', 'country','status','drop'];
-displayedTrackColumns: string[] = ['id','title','language','duration','releaseDate','producer','status'];
+displayedTrackColumns: string[] = ['id','title','language','duration','releaseDate','producer','status','drop'];
 
 // displayedTrackColumns: string[] = ['title', 'language', 'producer'];
   constructor(
@@ -55,7 +56,8 @@ displayedTrackColumns: string[] = ['id','title','language','duration','releaseDa
     private route: ActivatedRoute,
     private albumSvc: AlbumService,
     private trackSvc: TrackService,
-    private artistSvc: ArtistService
+    private artistSvc: ArtistService,
+    private cdr: ChangeDetectorRef
 
   ){}
   ngOnInit(): void {
@@ -163,6 +165,7 @@ cancel(): void {
     this.albumSvc.registerArtist(this.albumId, artistId).subscribe({
       next:(updatedAlbum) =>{
         this.registeredArtists = updatedAlbum.artists || [];
+        this.cdr.markForCheck();
       },
       error: () => this.errorMessage = 'Error registering Artist'
     });
@@ -173,20 +176,56 @@ cancel(): void {
     this.albumSvc.registerTrack(this.albumId, trackId).subscribe({
       next:(updatedAlbum) =>{
         this.registeredTracks = updatedAlbum.tracks || [];
+        this.cdr.markForCheck();
       },
       error: () => this.errorMessage = 'Error registering Track'
     });
   }
 
-  dropArtist(artistId: number): void{
-    if(!this.albumId) return;
+  // dropArtist(artistId: number): void{
+  //   if(!this.albumId) return;
+  //   this.albumSvc.dropArtist(this.albumId, artistId).subscribe({
+  //     next: ()=> {
+  //       this.router.navigate(['/artists/', this.albumId, '/edit']);
+  //     },
+  //       error: () => this.errorMessage = 'Error dropping student'
+  //   });
+  // }
+
+  dropArtist(artistId: number): void {
+    if (!this.albumId) return;
+
     this.albumSvc.dropArtist(this.albumId, artistId).subscribe({
-      next:(updatedAlbum) =>{
-        this.registeredArtists = updatedAlbum.artists || [];
+      next: (updatedAlbum) => {
+        if (updatedAlbum && updatedAlbum.artists) {
+          this.registeredArtists = updatedAlbum.artists;
+        } else {
+          // fallback: remove artist from registeredArtists manually
+          this.registeredArtists = this.registeredArtists.filter(a => a.id !== artistId);
+        }
+        this.cdr.markForCheck();
       },
-        error: () => this.errorMessage = 'Error dropping student'
+      error: () => this.errorMessage = 'Error dropping Artist'
     });
   }
+
+  dropTrack(trackID: number): void {
+    if (!this.albumId) return;
+
+    this.albumSvc.dropTrack(this.albumId, trackID).subscribe({
+      next: (updatedAlbum) => {
+        if (updatedAlbum && updatedAlbum.tracks) {
+          this.registeredTracks = updatedAlbum.tracks;
+        } else {
+          // fallback: remove artist from registeredArtists manually
+          this.registeredTracks = this.registeredTracks.filter(a => a.id !== trackID);
+        }
+        this.cdr.markForCheck();
+      },
+      error: () => this.errorMessage = 'Error dropping Track'
+    });
+  }
+
 
 
 

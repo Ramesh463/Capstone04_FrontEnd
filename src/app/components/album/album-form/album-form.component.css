@@ -7,9 +7,7 @@ height:fit-content;
 }
 
 .example-full-width {
-
   width: 500px;
-
 }
 
 
@@ -95,9 +93,25 @@ mat-row:hover {
       font-size: 16px;
     }
 
-.Table{
+
+    .example-small-box, .example-large-box {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
 }
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 300px;
+  width: 300px;
+}
+
 
 

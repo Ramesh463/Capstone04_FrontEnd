@@ -16,7 +16,7 @@
     <div>
       <mat-form-field class="example-full-width"  color="primary" appearance="outline">
         <mat-label>Track Duration</mat-label>
-        <input matInput placeholder="Ex. Pizza" id="duration" type="text" class="form-control"
+        <input matInput  id="duration" type="text" class="form-control"
           formControlName="duration" />
         <div *ngIf="trackForm.get('duration')?.touched && trackForm.get('duration')?.invalid" class="text-danger">
           <small>Title is required.</small>
@@ -28,7 +28,7 @@
       <mat-form-field class="example-full-width"  color="primary" appearance="outline">
         <mat-label>Release Date</mat-label>
         <input matInput id="releaseDate"  matInput [matDatepicker]="picker"  class="form-control" formControlName="releaseDate" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
+
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <div *ngIf="trackForm.get('releaseDate')?.touched && trackForm.get('releaseDate')?.invalid" class="text-danger">

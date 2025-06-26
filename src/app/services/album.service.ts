@@ -55,6 +55,13 @@ export class AlbumService {
     );
   }
 
+  dropTrack(albumId: number, trackId: number): Observable <Album>{
+    return this.http.delete<Album>(
+     `${this.baseUrl}/${albumId}/tracks/${trackId}`,
+     {}
+    );
+  }
+
   getAlbumArtist(id: number): Observable <Artist[]>{
     return this.http.get<Artist[]>(`${this.baseUrl}/${id}/artists`);
 

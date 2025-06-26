@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-card class="mat-elevation-z8 login-card">
+    <div class="avatar-container">
+      <mat-icon class="avatar-icon" color="primary">lock</mat-icon>
+    </div>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Access your account</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" id="username" [(ngModel)]="username" name="username" required #usernameCtrl="ngModel" />
+          <mat-error *ngIf="usernameCtrl.invalid && usernameCtrl.touched">Username is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" [(ngModel)]="password" name="password" required #passwordCtrl="ngModel" />
+          <mat-error *ngIf="passwordCtrl.invalid && passwordCtrl.touched">Password is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" class="login-btn" [disabled]="!username || !password">
+          Login
+        </button>
+      </form>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+      <div class="register-link-container">
+        <span>Don't have an account?</span>
+        <a (click)="router.navigate(['/register'])" routerLinkActive="active" class="register-link">Register here</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

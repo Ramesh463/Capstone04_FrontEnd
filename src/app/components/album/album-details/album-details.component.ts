@@ -24,6 +24,10 @@ constructor(private svc: AlbumService,
     this.svc.findById(id).subscribe((a) =>(this.albums =a));
   }
 
+  cancel(): void {
+    this.router.navigate(['/albums']);
+  }
+
 
 }
 
