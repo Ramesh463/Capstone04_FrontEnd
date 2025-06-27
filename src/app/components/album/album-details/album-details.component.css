@@ -18,6 +18,7 @@
 }
 
 .name-client {
+  text-align:justify;
   margin: 0;
   margin-top: 20px;
   font-weight: 600;
@@ -52,5 +53,9 @@
       height: 40px;
       font-size: 16px;
     }
-
+.main{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 

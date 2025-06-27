@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { MATERIAL_IMPORTS } from '../../../material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,11 +17,19 @@ import { MATERIAL_IMPORTS } from '../../../material';
 export class LoginComponent {
   username = '';
   password = '';
-  errorMessage = '';
+
 
   constructor(private authService: AuthService,
     public router: Router,
+    private snack: MatSnackBar
     ) {}
+
+   errorMessage(message: string) {
+    this.snack.open(message, 'Close', {
+      duration: 4000,
+      panelClass: ['error-snack']
+    });
+  }
 
   login() {
     this.authService.login(this.username, this.password).subscribe({
@@ -29,7 +38,7 @@ export class LoginComponent {
         this.authService.tokenSubject.next(response.token);
         this.router.navigate(['/']);
       },
-      error: () => this.errorMessage = 'Invalid username or password'
+      error: () => this.errorMessage('Invalid username or password')
     });
   }
 

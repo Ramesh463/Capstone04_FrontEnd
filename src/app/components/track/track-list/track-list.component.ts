@@ -6,6 +6,7 @@ import { Genre } from '../../../models/GENRE';
 import { MATERIAL_IMPORTS } from '../../../material';
 import { TrackDetailsDialogComponent } from '../track-details-dialog/track-details-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../Shared/delete-confirmation.component';
 
 @Component({
   selector: 'app-track-list',
@@ -46,16 +47,22 @@ constructor(
   }
 
   deleteTrack(track: Track): void {
-    if (track.id == null) {
-      return;
-    }
-    if (confirm(`Are you sure you want to delete course "${track.title}"?`)) {
-      this.svc.deleteTrack(track.id).subscribe({
+    if (track.id == null) return;
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: { message: `Are you sure you want to delete Track "${track.title} "?` }
+      });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.svc.deleteTrack(track.id as number).subscribe({
         next: () => this.loadTracks(),
-        error: () => (this.errorMessage = 'Error deleting course'),
+        error: () => (this.errorMessage = 'Error deleting Track'),
       });
     }
-  }
+  });
+}
 
 viewTrack(track: Track): void{
      if(track.id != null){

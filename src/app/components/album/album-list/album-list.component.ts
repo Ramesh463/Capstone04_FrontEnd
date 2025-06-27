@@ -6,6 +6,8 @@ import { Track } from '../../../models/track';
 import { Artist } from '../../../models/artist';
 import { MATERIAL_IMPORTS } from '../../../material';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../Shared/delete-confirmation.component';
 
 @Component({
   selector: 'app-album-list',
@@ -21,7 +23,11 @@ export class AlbumListComponent implements OnInit {
   artists: Artist[]= [];
   errorMessage = '';
 
-  constructor(private svc: AlbumService, public router: Router){}
+  constructor(
+    private svc: AlbumService,
+    public router: Router,
+    private dialog: MatDialog
+    ){}
 
   ngOnInit(): void {
     this.loadAlbum();
@@ -45,23 +51,22 @@ export class AlbumListComponent implements OnInit {
   }
 
   deleteAlbum(album: Album): void{
-    if(album.id== null){
-      return;
-    }
-    if(
-      confirm(
-        `Delete album ? "${
-          album.id
-        }"?`
-      )
-    )
-    {
-      this.svc.deleteAlbum(album.id).subscribe({
+    if(album.id== null) return;
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: { message: `Are you sure you want to delete album "${album.albumName} "?` }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.svc.deleteAlbum(album.id as number).subscribe({
          next: () => this.loadAlbum(),
         error: () => (this.errorMessage = 'Error deleting Album'),
       });
     }
-  }
+  });
+}
+
 
   manageArtists(album: Album): void{
     if(album.id != null){

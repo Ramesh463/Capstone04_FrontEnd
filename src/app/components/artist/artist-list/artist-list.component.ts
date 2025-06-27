@@ -7,6 +7,9 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_IMPORTS } from '../../../material';
 import { ArtistDetailsDialogComponent } from '../artist-details-dialog/artist-details-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../Shared/delete-confirmation.component';
+
+
 
 @Component({
   selector: 'app-artist-list',
@@ -51,21 +54,23 @@ addArtist(): void {
     }
   }
 
-  deleteArtist(artist: Artist): void{
-    if(artist.id ==null){
-      return;
-    }
-    if(
-      confirm(
-        `Are you sure you want to delete artist "${artist.firstName} ${artist.lastName}"?`
-      )
-    ){
-      this.svc.delete(artist.id).subscribe({
-        next: ()=> this.loadArtist(),
-        error: ()=> this.errorMessage = 'Error deleting artist',
+  deleteArtist(artist: Artist): void {
+  if (artist.id == null)
+    return;
+
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: { message: `Are you sure you want to delete artist "${artist.firstName} ${artist.lastName}"?` }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.svc.delete(artist.id as number).subscribe({
+        next: () => this.loadArtist(),
+        error: () => this.errorMessage = 'Error deleting artist',
       });
     }
-  }
+  });
+}
 
   viewArtist(artist: Artist): void{
      if(artist.id != null){

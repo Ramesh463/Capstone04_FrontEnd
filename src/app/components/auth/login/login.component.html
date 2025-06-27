@@ -23,7 +23,8 @@
           Login
         </button>
       </form>
-      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
+
       <div class="register-link-container">
         <span>Don't have an account?</span>
         <a (click)="router.navigate(['/register'])" routerLinkActive="active" class="register-link">Register here</a>
