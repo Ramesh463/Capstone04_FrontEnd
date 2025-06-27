@@ -1,4 +1,4 @@
-/* From Uiverse.io by sahilxkhadka */
+/*
 .card {
   padding: 2em 1em;
 width:600px;
@@ -117,20 +117,76 @@ width:600px;
   margin-bottom: 20px;
 }
 
+
+
+
+
+
+    .artist-details {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 400px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+
+    .artist-details p {
+      margin: 10px ;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .artist-details strong {
+      color: #555;
+    }
+
+
+ */
+
+
+ .main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.artist-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.artist-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #3f51b5;
+  text-align: center;
+}
+
 .artist-details p {
   font-size: 16px;
-  margin: 10px 0;
-  color: #333;
+  margin: 8px 0;
+  color: #444;
+}
+
+.artist-details strong {
+  color: #222;
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .button-container {
-  margin-top: 30px;
-  text-align: center;
+  margin-top: 24px;
 }
 

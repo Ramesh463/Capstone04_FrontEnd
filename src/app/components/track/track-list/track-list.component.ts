@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Track } from '../../../models/track';
 import { Genre } from '../../../models/GENRE';
 import { MATERIAL_IMPORTS } from '../../../material';
+import { TrackDetailsDialogComponent } from '../track-details-dialog/track-details-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-track-list',
@@ -17,7 +19,11 @@ tracks: Track[] = [];
 errorMessage ='';
 genre = Genre;
 
-constructor(private svc: TrackService, public router: Router){}
+constructor(
+  private svc: TrackService,
+  public router: Router,
+  private dialog: MatDialog
+){}
 
   ngOnInit(): void {
    this.loadTracks();
@@ -56,6 +62,12 @@ viewTrack(track: Track): void{
       this.router.navigate(['/tracks',track.id,'view']);
     }
   }
+
+  openTrackDialog(track: any): void {
+      this.dialog.open(TrackDetailsDialogComponent, {
+        data: track
+      });
+    }
 
 
 }

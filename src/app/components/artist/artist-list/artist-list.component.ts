@@ -5,6 +5,8 @@ import { ArtistService } from '../../../services/artist.service';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 
 import { MATERIAL_IMPORTS } from '../../../material';
+import { ArtistDetailsDialogComponent } from '../artist-details-dialog/artist-details-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-artist-list',
@@ -20,7 +22,12 @@ artists: Artist[] = [];
 errorMessage ='';
 
 
-constructor(private svc: ArtistService, public router: Router){}
+constructor(
+  private svc: ArtistService,
+  public router: Router,
+  private dialog: MatDialog
+
+){}
   ngOnInit(): void {
     this.loadArtist();
   }
@@ -65,4 +72,10 @@ addArtist(): void {
       this.router.navigate(['/artists',artist.id,'view']);
     }
   }
+
+  openArtistDialog(artist: any): void {
+      this.dialog.open(ArtistDetailsDialogComponent, {
+        data: artist
+      });
+    }
 }

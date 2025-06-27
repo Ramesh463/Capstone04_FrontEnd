@@ -1,3 +1,4 @@
+<!-- Add this inside your component's HTML file -->
 <div class="main-container" *ngIf="artists">
   <mat-card class="artist-card">
     <div class="artist-header">
@@ -11,15 +12,15 @@
     </div>
 
     <div class="social-icons">
-      <button mat-icon-button >
-
+      <button mat-icon-button aria-label="Share">
+        <mat-icon>share</mat-icon>
       </button>
       <!-- Add more icons as needed -->
     </div>
   </mat-card>
 
   <div class="button-container">
-    <button mat-fab color="primary" (click)="cancel()">
+    <button mat-fab extended color="primary" (click)="cancel()">
       <mat-icon>arrow_back</mat-icon> Back
     </button>
   </div>
