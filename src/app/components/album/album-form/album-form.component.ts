@@ -18,6 +18,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -57,7 +58,8 @@ displayedTrackColumns: string[] = ['id','title','language','duration','releaseDa
     private albumSvc: AlbumService,
     private trackSvc: TrackService,
     private artistSvc: ArtistService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private snackBar: MatSnackBar
 
   ){}
   ngOnInit(): void {
@@ -144,12 +146,22 @@ displayedTrackColumns: string[] = ['id','title','language','duration','releaseDa
     if(this.isEditMode && this.albumId != null){
       salbumData.id =this.albumId;
       this.albumSvc.updateAlbum(this.albumId,salbumData).subscribe({
-         next: () => this.router.navigate(['/albums']),
+         next: () => {this.router.navigate(['/albums']),
+          this.snackBar.open('Album updated successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+          })
+         },
         error: () => this.errorMessage = 'Error updating album'
       });
     }else {
       this.albumSvc.createAlbum(salbumData).subscribe({
-         next: () => this.router.navigate(['/albums']),
+         next: () => {this.router.navigate(['/albums']),
+          this.snackBar.open('Album added successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+          })
+         },
         error: () => this.errorMessage = 'Error creating album'
       });
     }

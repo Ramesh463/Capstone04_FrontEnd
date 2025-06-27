@@ -17,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 
 export const MATERIAL_IMPORTS = [
   MatToolbarModule,
@@ -40,7 +43,7 @@ export const MATERIAL_IMPORTS = [
   MatLabel,
   MatInputModule,
   MatTableModule,
-
+  MatSnackBarModule,
   MatFormFieldModule,
   MatInputModule,
   FormsModule,

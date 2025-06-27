@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class ArtistFormComponent implements OnInit{
     private svc: ArtistService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -72,12 +74,24 @@ export class ArtistFormComponent implements OnInit{
     if(this.isEditMode && this.artistId != null){
       artistData.id = this.artistId;
       this.svc.update(this.artistId,artistData).subscribe({
-        next: ()=> this.router.navigate(['/artists']),
+        next: ()=> {this.router.navigate(['/artists']),
+        this.snackBar.open('Artist updated successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+      });
+
+
+    },
         error: () => this.errorMessage = 'error updating artist'
       });
     } else {
       this.svc.create(artistData).subscribe({
-        next: ()=> this.router.navigate(['/artists']),
+        next: ()=> {this.router.navigate(['/artists']),
+        this.snackBar.open('Artist added successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+      });
+    },
         error:() => this.errorMessage = 'Error creating artist'
       });
     }

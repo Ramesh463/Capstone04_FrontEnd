@@ -9,6 +9,7 @@ import { MATERIAL_IMPORTS } from '../../../material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-track-form',
@@ -35,7 +36,8 @@ export class TrackFormComponent implements OnInit{
     private svc: TrackService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -80,12 +82,22 @@ export class TrackFormComponent implements OnInit{
     if(this.isEditMode && this.tracksId != null){
       trackData.id =this.tracksId;
       this.svc.updateTrack(this.tracksId, trackData).subscribe({
-        next: () => this.router.navigate(['/tracks']),
+        next: () => {this.router.navigate(['/tracks']),
+          this.snackBar.open('Track updated successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+          })
+        },
         error: () => this.errorMessage = 'Error updating track'
       });
     }else{
       this.svc.createTrack(trackData).subscribe({
-        next: () => this.router.navigate(['/tracks']),
+        next: () => {this.router.navigate(['/tracks']),
+          this.snackBar.open('Artist updated successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+          })
+        },
         error: () => this.errorMessage = 'Error creating track'
       });
     }
