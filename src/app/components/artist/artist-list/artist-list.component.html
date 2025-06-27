@@ -1,4 +1,3 @@
-
 <div class="addButton">
   <button mat-flat-button color="primary" (click)="addArtist()">Add Artist</button>
 </div>
@@ -7,24 +6,46 @@
     @for (artist of artists; track artist.id) {
     <div class="card-client">
       <div class="user-picture">
-      <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
       </div>
-      <p class="name-client"> {{artist.firstName}} {{artist.lastName}}
+      <p class="name-client" style="font-weight: bold;"> {{artist.firstName}} {{artist.lastName}}
         <span>
         </span>
       </p>
 
       <div class="social-media">
       </div>
-      <p class="name-client"> {{artist.birthDate}}
+
       <p class="name-client"> {{artist.country}}
-      <p class="name-client"> {{artist.bio}}
+
         <span>
         </span>
+
       </p>
 
-      <button mat-raised-button (click)="deleteArtist(artist)">Delete</button>
-      <button mat-raised-button (click)="editArtist(artist)">Edit</button>
+      <p class="name-client">
+
+        <span>
+        </span>
+
+      </p>
+      <div class="artist-action-buttons">
+        <button mat-fab color="primary" matTooltip="View" aria-label="View Artist" (click)="viewArtist(artist)">
+          <mat-icon>person</mat-icon>
+        </button>
+
+        <button mat-fab color="accent"  matTooltip="Edit" aria-label="Edit Artist" (click)="editArtist(artist)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-fab color="warn"  matTooltip="Delete" aria-label="Delete Artist" (click)="deleteArtist(artist)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+
+
+
     </div>
     }
   </div>

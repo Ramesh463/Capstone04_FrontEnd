@@ -7,20 +7,31 @@
     <div class="user-picture">
       <mat-icon>album</mat-icon>
     </div>
-    <p class="name-client"> {{album.albumName}}
+    <p class="name-client" style="font-weight: bold;"> {{album.albumName}}
       <span>
       </span>
     </p>
     <div class="social-media">
     </div>
     <p class="name-client"> {{album.description}}
-    <p class="name-client"> {{album.format}}
+
     <p class="name-client"> {{album.genre}}
       <span>
       </span>
     </p>
-    <button mat-raised-button (click)=editAlbum(album)>Edit</button>
-    <button mat-raised-button (click)="router.navigate(['/albums',  album.id, 'view'])"> view</button>
+    <div class="artist-action-buttons">
+      <button mat-fab color="primary" matTooltip="View" aria-label="View Artist" (click)="viewAlbum(album)">
+        <mat-icon>person</mat-icon>
+      </button>
+
+      <button mat-fab color="accent" matTooltip="Edit" aria-label="Edit Artist" (click)="editAlbum(album)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-fab color="warn" matTooltip="Delete" aria-label="Delete Artist" (click)="deleteAlbum(album)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
   }
 </div>

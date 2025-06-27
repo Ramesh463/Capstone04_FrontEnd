@@ -50,15 +50,15 @@ export class AlbumListComponent implements OnInit {
     }
     if(
       confirm(
-        `Delete album for artist "${
-          album.track.title
+        `Delete album ? "${
+          album.id
         }"?`
       )
     )
     {
       this.svc.deleteAlbum(album.id).subscribe({
          next: () => this.loadAlbum(),
-        error: () => (this.errorMessage = 'Error deleting class'),
+        error: () => (this.errorMessage = 'Error deleting Album'),
       });
     }
   }
@@ -71,6 +71,12 @@ export class AlbumListComponent implements OnInit {
 
   trackByAlbumId(index: number, album: Album): number{
     return album.id? album.id : index;
+  }
+
+  viewAlbum(album: Album): void{
+     if(album.id != null){
+      this.router.navigate(['/albums',album.id,'view']);
+    }
   }
 
 }

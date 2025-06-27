@@ -59,4 +59,10 @@ addArtist(): void {
       });
     }
   }
+
+  viewArtist(artist: Artist): void{
+     if(artist.id != null){
+      this.router.navigate(['/artists',artist.id,'view']);
+    }
+  }
 }

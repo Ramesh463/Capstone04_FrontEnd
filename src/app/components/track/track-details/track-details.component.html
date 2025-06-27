@@ -1,0 +1,29 @@
+<div class="main">
+<div class="card">
+  @if (tracks) {
+  <div class="heading">
+    {{tracks.title}}
+
+  </div>
+
+
+  <div class="detail">Language : {{tracks.language}} </div>
+  <div class="detail">Release Date: {{tracks.releaseDate}} </div>
+    <div class="detail">Duration : {{tracks.duration}} in mins </div>
+    <div class="detail">Producer : {{tracks.producer}}  </div>
+  <div class="code">
+
+
+
+  </div>
+  <div class="icons-container">
+  <div class="icons">
+    <mat-icon aria-label="Facebook">facebook</mat-icon>
+  </div>
+
+  </div>
+}
+</div>
+<div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()"> <mat-icon>arrow_back</mat-icon> Back</a></div>
+
+</div>

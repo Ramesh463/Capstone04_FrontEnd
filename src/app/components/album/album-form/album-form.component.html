@@ -189,7 +189,7 @@
             <th mat-header-cell *matHeaderCellDef> Status</th>
             <td mat-cell *matCellDef="let tracks"> <button mat-flat-button (click)="addTrackToAlbum(tracks.id!)"
                 class="btn btn-sm btn-success" [disabled]="isRegisteredTrack(tracks)">
-                {{ isRegistered(tracks) ? 'Registered' : 'Register' }}
+                {{ isRegisteredTrack(tracks) ? 'Registered' : 'Register' }}
               </button> </td>
           </ng-container>
 

@@ -1,0 +1,26 @@
+<div class="main-container" *ngIf="artists">
+  <mat-card class="artist-card">
+    <div class="artist-header">
+      <h2>{{ artists.firstName }} {{ artists.lastName }}</h2>
+    </div>
+
+    <div class="artist-details">
+      <p><strong>DOB:</strong> {{ artists.birthDate }}</p>
+      <p><strong>Country:</strong> {{ artists.country }}</p>
+      <p><strong>Bio:</strong> {{ artists.bio }}</p>
+    </div>
+
+    <div class="social-icons">
+      <button mat-icon-button >
+
+      </button>
+      <!-- Add more icons as needed -->
+    </div>
+  </mat-card>
+
+  <div class="button-container">
+    <button mat-fab color="primary" (click)="cancel()">
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+  </div>
+</div>

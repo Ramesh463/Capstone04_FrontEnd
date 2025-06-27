@@ -10,7 +10,7 @@ import { MATERIAL_IMPORTS } from '../../../material';
   imports: [MATERIAL_IMPORTS],
   templateUrl: './track-list.component.html',
   styleUrl: './track-list.component.css',
-  
+
 })
 export class TrackListComponent implements OnInit {
 tracks: Track[] = [];
@@ -36,7 +36,7 @@ constructor(private svc: TrackService, public router: Router){}
     if(track.id != null){
       this.router.navigate(['/tracks', track.id, 'edit']);
     }
-    
+
   }
 
   deleteTrack(track: Track): void {
@@ -51,7 +51,11 @@ constructor(private svc: TrackService, public router: Router){}
     }
   }
 
-
+viewTrack(track: Track): void{
+     if(track.id != null){
+      this.router.navigate(['/tracks',track.id,'view']);
+    }
+  }
 
 
 }

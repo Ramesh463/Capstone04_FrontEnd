@@ -3,6 +3,10 @@ import { Album } from './../../../models/album';
 import { Component, OnInit } from '@angular/core';
 import { MATERIAL_IMPORTS } from '../../../material';
 import { AlbumService } from '../../../services/album.service';
+import { ArtistDetailsDialogComponent } from '../../artist/artist-details-dialog/artist-details-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TrackDetailsDialogComponent } from '../../track/track-details-dialog/track-details-dialog.component';
+
 
 @Component({
   selector: 'app-album-details',
@@ -15,7 +19,8 @@ albums?: Album;
 
 constructor(private svc: AlbumService,
   private router: Router,
-  private route: ActivatedRoute
+  private route: ActivatedRoute,
+  private dialog: MatDialog
 ){
 
 }
@@ -26,6 +31,18 @@ constructor(private svc: AlbumService,
 
   cancel(): void {
     this.router.navigate(['/albums']);
+  }
+
+  openArtistDialog(artist: any): void {
+    this.dialog.open(ArtistDetailsDialogComponent, {
+      data: artist
+    });
+  }
+
+  openTrackDialog(track: any): void {
+    this.dialog.open(TrackDetailsDialogComponent, {
+      data: track
+    });
   }
 
 

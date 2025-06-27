@@ -9,6 +9,8 @@ import { AlbumDetailsComponent } from './components/album/album-details/album-de
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { ArtistDetailsComponent } from './components/artist/artist-details/artist-details.component';
+import { TrackDetailsComponent } from './components/track/track-details/track-details.component';
 
 export const routes: Routes = [
  { path: '', redirectTo: '/artists', pathMatch: 'full' },
@@ -19,10 +21,12 @@ export const routes: Routes = [
  { path: 'artists', component: ArtistListComponent, canActivate: [AuthGuard] },
  { path: 'artists/new', component: ArtistFormComponent, canActivate: [AuthGuard]},
  { path: 'artists/:id/edit', component: ArtistFormComponent, canActivate: [AuthGuard]},
+ { path: 'artists/:id/view', component: ArtistDetailsComponent, canActivate: [AuthGuard]},
 
  {path: 'tracks', component: TrackListComponent, canActivate: [AuthGuard]},
  {path: 'tracks/new', component: TrackFormComponent, canActivate: [AuthGuard]},
  {path: 'tracks/:id/edit', component: TrackFormComponent, canActivate: [AuthGuard]},
+ {path: 'tracks/:id/view', component: TrackDetailsComponent, canActivate: [AuthGuard]},
 
  {path: 'albums', component: AlbumListComponent, canActivate: [AuthGuard]},
  {path: 'albums/new', component: AlbumFormComponent, canActivate: [AuthGuard]},

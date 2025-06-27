@@ -1,0 +1,136 @@
+/* From Uiverse.io by sahilxkhadka */
+.card {
+  padding: 2em 1em;
+width:600px;
+  height: 500px;
+  background: #fff;
+  border-radius: 12px;
+  animation: shadow 1s infinite ease-in-out;
+  transition: box-shadow 200ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.card .heading {
+  color: royalblue;
+  font-size: 3em;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.card .detail {
+  color: royalblue;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+
+.card .heading span {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.card .icons {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+  -2px -2px 5px rgba(9, 148, 255, 0.25),
+  inset -2px -2px 55px rgba(9, 148, 255, 0.5);
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+}
+
+.card .icons-container {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.card .icons svg {
+  fill: royalblue;
+  height: 24px;
+  width: 24px;
+}
+
+.card .code {
+  width: fit-content;
+  margin: 1.5em auto;
+}
+
+.card .code svg {
+  fill: royalblue;
+  width: 180px;
+  aspect-ratio: 16/9;
+}
+
+@keyframes shadow {
+  0% {
+    box-shadow: 5px 5px 20px rgba(9, 148, 255, 0.15),
+  -5px -5px 10px rgba(9, 148, 255, 0.1),
+  inset -5px -5px 5px rgba(9, 148, 255, 0.5);
+  }
+
+  50% {
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+  -10px -10px 30px rgba(9, 148, 255, 0.1),
+  inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+  }
+
+  100% {
+    box-shadow: 5px 5px 20px rgba(9, 148, 255, 0.15),
+  -5px -5px 10px rgba(9, 148, 255, 0.1),
+  inset -5px -5px 5px rgba(9, 148, 255, 0.5);
+  }
+}
+
+.main{
+  justify-items: center;
+}
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.artist-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.artist-header h2 {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 20px;
+}
+
+.artist-details p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-container {
+  margin-top: 30px;
+  text-align: center;
+}
+

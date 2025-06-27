@@ -11,27 +11,33 @@
 
 
 
-    <mat-card class="card-client">
-    <H3>List of Artists</H3>
+   <mat-card class="card-client">
+  <H3>List of Artists</H3>
+  <div>
+    @for (artist of albums.artists; track artist.id) {
+      <p class="name-client">
+        {{artist.firstName}}
+        <button mat-stroked-button color="primary" (click)="openArtistDialog(artist)">View</button>
+      </p>
+    }
+  </div>
+</mat-card>
 
-      <div>@for (artist of albums.artists; track artist.id) {
-        <p class="name-client"> {{artist.firstName}} - {{artist.bio}}</p>
-        }
-      </div>
-    </mat-card>
+
+<mat-card class="card-client">
+  <H3>List of Track</H3>
+  <div>
+    @for (track of albums.tracks; track track.id) {
+      <p class="name-client">
+        {{track.title}}
+        <button mat-stroked-button color="primary" (click)="openTrackDialog(track)">View</button>
+      </p>
+    }
+  </div>
+</mat-card>
 
 
 
-
-  <mat-card class="card-client">
-
-    <h3>List of Tracks</h3>
-    <div>@for (track1 of albums.tracks; track track1.id) {
-      <p class="name-client">{{track1.title}}
-        <p class="name-client">{{track1.language}}
-          }
-    </div>
-  </mat-card>
 
 
 </div>

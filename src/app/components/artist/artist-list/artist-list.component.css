@@ -37,6 +37,7 @@
   transition: all 0.3s ease;
    float: left;
   width: 20%;
+  height: 300px;
   padding: 10px 10px;
 }
 
@@ -134,6 +135,18 @@
 .social-media a .tooltip-social:after {
   border-top-color: #262626;
 }
+
+.artist-action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content:center;
+  margin-top: 10px;
+}
+
+.artist-action-buttons button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 
 
 
