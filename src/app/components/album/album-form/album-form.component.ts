@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Format } from '../../../models/Format';
 
 
 
@@ -35,6 +36,9 @@ export class AlbumFormComponent implements OnInit {
 
     genres = Object.values(Genre);
     selectedGenre: string = Genre.BLUES;
+
+    formats = Object.values(Format);
+    selectFormat: string = Format.DIGITAL
 
   albumForm!: FormGroup;
 
