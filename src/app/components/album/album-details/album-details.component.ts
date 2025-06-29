@@ -6,11 +6,12 @@ import { AlbumService } from '../../../services/album.service';
 import { ArtistDetailsDialogComponent } from '../../artist/artist-details-dialog/artist-details-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TrackDetailsDialogComponent } from '../../track/track-details-dialog/track-details-dialog.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-album-details',
-  imports: [MATERIAL_IMPORTS],
+  imports: [MATERIAL_IMPORTS,CommonModule],
   templateUrl: './album-details.component.html',
   styleUrl: './album-details.component.css'
 })

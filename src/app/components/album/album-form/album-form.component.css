@@ -122,3 +122,16 @@ mat-mdc-tab-body-wrapper {
     height: 100vh;
 }
 
+.badge {
+  background: #1976d2;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.85em;
+  margin-left: 8px;
+  vertical-align: middle;
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+}
+

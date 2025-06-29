@@ -1,12 +1,12 @@
 .card-client {
-    background:  rgb(174, 204, 243);
+    background:  #fcfcfc;
   width: 40rem;
   padding-top: 50px;
   padding-bottom: 25px;
   padding-left: 20px;
   padding-right: 20px;
   border: 4px solid #e6e9eb;
-  box-shadow: 0 6px 10px rgb(157, 180, 224);
+  box-shadow: 6px 6px 10px rgb(157, 180, 224);
   border-radius: 10px;
   text-align: center;
   color: #04060c;
@@ -56,6 +56,31 @@
 .main{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10%;
 }
+
+.title {
+   color: #3f51b5;
+ justify-content: center;
+}
+
+.content1{
+  font-size: 100%;
+  height: 50%;
+}
+
+.badge {
+  background:  #3f51b5;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.85em;
+  margin-left: 8px;
+  vertical-align: middle;
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+}
+
+
 

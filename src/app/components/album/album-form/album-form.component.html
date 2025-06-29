@@ -41,11 +41,11 @@
 
         <div>
           <mat-form-field class="example-full-width" color="primary" appearance="outline">
-            <mat-label>Total Track</mat-label>
+            <mat-label>Release Year</mat-label>
             <input matInput id="totalTracks" type="number" class="form-control" formControlName="totalTracks" />
             <div *ngIf="albumForm.get('totalTracks')?.touched && albumForm.get('totalTracks')?.invalid"
               class="text-danger">
-              <small>Total Track is required.</small>
+              <small>Release year is required.</small>
             </div>
           </mat-form-field>
         </div>
@@ -84,11 +84,15 @@
 
 
 
-  <mat-tab label="Registered Artists">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Registered Artists
+      <span *ngIf="registeredArtists?.length" class="badge">{{ registeredArtists.length }}</span>
+    </ng-template>
 
     <div class="Table">
       <div *ngIf="isEditMode">
-        <h3>List of Artists</h3>
+        <div style="justify-items: center;"><h3>List of Artists</h3></div>
         <table mat-table [dataSource]="allArtist" class="mat-elevation-z8">
 
           <!-- ID Column -->
@@ -154,12 +158,16 @@
 
 
 
-
-  <mat-tab label="Registered Tracks">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Registered Tracks
+      <span *ngIf="registeredTracks?.length" class="badge">{{ registeredTracks.length }}</span>
+    </ng-template>
 
     <div class="Table">
       <div *ngIf="isEditMode">
-        <h3>List of Tracks</h3>
+        <div style="justify-items: center;"><h3 >List of Tracks</h3></div>
+
         <table mat-table [dataSource]="allTrack" class="mat-elevation-z8">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> ID </th>

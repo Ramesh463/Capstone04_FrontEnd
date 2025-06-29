@@ -1,40 +1,52 @@
 @if (albums) {
-<div class="main" >
+<div class="main">
   <mat-card class="card-client">
-    <h2 class="name-client">Album Details</h2>
-    <h2 class="name-client">Name : {{albums.albumName}} </h2>
-    <p class="name-client">Desc: {{albums.description}}</p>
-    <p class="name-client">Genre: {{albums.genre}}</p>
-    <p class="name-client">Format: {{albums.format}}</p>
-    <p class="name-client">Total no of tracks: {{albums.totalTracks}}</p>
+    <h2 class="title">Album Details</h2>
+    <div class="content1">
+        <p ><strong> Name:</strong> {{albums.albumName}}</p>
+    <p  >  <strong> Desc:</strong> {{albums.description}}
+    <p > <strong> Genre:</strong> {{albums.genre}}
+    <p > <strong> Format:</strong>  {{albums.format}}
+    <p ><strong> Release Year:</strong> {{albums.totalTracks}}
+    </div>
+
+    <!-- <p><strong> Name:</strong>  {{albums.albumName}}</p>
+    <p> <strong>Desc:</strong> {{albums.description}}</p>
+    <p><strong>Genre:</strong> {{albums.description}}</p>
+    <p><strong>Format:</strong> {{albums.format}}</p>
+    <p><strong>Total no of tracks:</strong> {{albums.totalTracks}}</p> -->
   </mat-card>
 
 
 
-   <mat-card class="card-client">
-  <H3>List of Artists</H3>
-  <div>
-    @for (artist of albums.artists; track artist.id) {
-      <p class="name-client">
-        {{artist.firstName}}
-        <button mat-stroked-button color="primary" (click)="openArtistDialog(artist)">View</button>
+  <mat-card class="card-client">
+    <h2 class="title">List of Artists
+      <span *ngIf="(albums.artists?.length ?? 0) > 0" class="badge">{{ albums.artists?.length ?? 0 }}</span>
+    </h2>
+    <div>
+      @for (artist of albums.artists; track artist.id) {
+      <p > <a mat-button  (click)="openArtistDialog(artist)"  target="_blank"><mat-icon >person</mat-icon> {{artist.firstName}}  {{artist.lastName}}</a>
+
+        <!-- <button mat-stroked-button color="primary" (click)="openArtistDialog(artist)">View</button> -->
       </p>
-    }
-  </div>
-</mat-card>
+      }
+    </div>
+  </mat-card>
 
 
-<mat-card class="card-client">
-  <H3>List of Tracks</H3>
-  <div>
-    @for (track of albums.tracks; track track.id) {
-      <p class="name-client">
-        {{track.title}}
-        <button mat-stroked-button color="primary" (click)="openTrackDialog(track)">View</button>
+  <mat-card class="card-client">
+    <h2 class="title">List of Tracks
+      <span *ngIf="(albums.tracks?.length ?? 0) > 0" class="badge">{{ albums.tracks?.length ?? 0 }}</span>
+    </h2>
+    <div>
+      @for (track of albums.tracks; track track.id) {
+      <p>
+
+       <p > <a mat-button  (click)="openTrackDialog(track)"  target="_blank"><mat-icon >music_note</mat-icon> {{track.title}}</a>
       </p>
-    }
-  </div>
-</mat-card>
+      }
+    </div>
+  </mat-card>
 
 
 
@@ -44,8 +56,8 @@
 }
 
 <div class="button-container">
-<mat-card-actions>
-<div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()">
-                <mat-icon>arrow_back</mat-icon> Back</a></div>
-</mat-card-actions>
+  <mat-card-actions>
+    <div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()">
+        <mat-icon>arrow_back</mat-icon> Back</a></div>
+  </mat-card-actions>
 </div>
